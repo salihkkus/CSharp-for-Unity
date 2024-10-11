@@ -1,16 +1,17 @@
 ﻿using System;
 
-namespace GetOnlyProperties
+namespace Review
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Forest f = new Forest();
-            f.Name = "Congo";
-            f.Trees = 0;
-            f.Biome = "Tropical";
-            f.Age = 10;
+            Console.WriteLine(Forest.ForestsCreated);
+
+            Forest f1 = new Forest("Amazon", "Tropical");
+            Forest f2 = new Forest("Congo");
+
+            Console.WriteLine(Forest.ForestsCreated);
         }
     }
 }
