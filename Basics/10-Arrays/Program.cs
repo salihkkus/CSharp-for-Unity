@@ -46,6 +46,14 @@ namespace BuildingArrays
             string lastSong = summerStrut[7];
             Console.WriteLine($"The first song in the playlist is now {firstSong}.");
             Console.WriteLine($"The last song in the playlist is now {lastSong}.");
+
+            Console.WriteLine("-------------------------------------------------------------------");
+
+            int[][] jaggedArray = new int[3][]; // 3 columns jagged array
+            jaggedArray[0] = new int[] { 1, 2 };
+            jaggedArray[1] = new int[] { 3, 4, 5 };
+            jaggedArray[2] = new int[] { 6 };
+
         }
     }
 }
