@@ -1,39 +1,40 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class CharacterAnimatorController : MonoBehaviour
 {
-    // Animator referansı
-    public Animator animator;
-    
-    // Hız ayarı
-    public float moveSpeed = 5f;
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>(); // Animator bileşenini buluyoruz
+    }
 
     private void Update()
     {
-        // Yatay eksende hareket girişini al (A/D veya ok tuşları)
-        float move = Input.GetAxis("Horizontal");
-
-        // Hareket varsa, yürüyüş animasyonunu başlat
-        if (move != 0)
+        // Space tuşuna basınca "Jump" trigger'ı tetikleniyor
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            animator.SetBool("IsWalking", true);  // Yürüme animasyonunu tetikler
-            transform.Translate(Vector3.right * move * moveSpeed * Time.deltaTime);
+            animator.SetTrigger("Jump"); // Jump animasyonunu tetikle
+        }
+
+        // Sol shift tuşuna basınca koşma bool'u aktif oluyor
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            animator.SetBool("IsRunning", true); // Koşma animasyonu açılıyor
         }
         else
         {
-            animator.SetBool("IsWalking", false); // Yürüme animasyonunu durdurur
+            animator.SetBool("IsRunning", false); // Koşma animasyonu kapanıyor
         }
     }
 }
 
 /*
-    Türkçe Açıklama:
-    - Bu script, karakteri yatay eksende hareket ettirir.
-    - "IsWalking" parametresi ile Animator Controller'daki geçişleri kontrol eder.
-    - Sağ ve sol tuşlarıyla karakterin hareket etmesi sağlanır.
+TR: 
+Bu script karakterin Animator bileşenine erişir. Space tuşuna basıldığında 'Jump' trigger'ını tetikler.
+Ayrıca sol shift tuşuna basıldığında koşma animasyonu aktif edilir ('IsRunning' bool parametresi).
 
-    English Explanation:
-    - This script moves the character on the horizontal axis.
-    - It controls the transitions in the Animator Controller with the "IsWalking" parameter.
-    - The character moves with the left and right keys.
+EN: 
+This script accesses the character's Animator component. When the Space key is pressed, it triggers the 'Jump' animation.
+Also, when the left shift key is pressed, it activates the running animation ('IsRunning' bool parameter).
 */
