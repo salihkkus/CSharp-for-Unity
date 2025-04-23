@@ -25,3 +25,19 @@ public class Character : MonoBehaviour
         Debug.Log("Speed: " + characterData.speed);
     }
 }
+
+//-----------------------------------------------------------------------------
+
+using UnityEngine;
+
+public class Player : MonoBehaviour
+{
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.AddScore(10); // Space'e basınca 10 puan ekle
+        }
+    }
+}
+
